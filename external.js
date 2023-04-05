@@ -20,14 +20,14 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection == 'paper' && computerSelection == 'rock') ||
         (playerSelection == 'scissor' && computerSelection == 'paper')
     ) {
-        result = `player wins with ${playerSelection} against computer's ${computerSelection}`;
+        result = `player wins`;
       } 
     else if (
         (computerSelection == 'rock' && playerSelection == 'scissor') ||
         (computerSelection == 'paper' && playerSelection == 'rock') ||
         (computerSelection == 'scissor' && playerSelection == 'paper')
     ) {
-        result = `Computer wins with ${computerSelection} against player's ${playerSelection}`;
+        result = `Computer wins`;
       }
     else {
         result = 'please enter a valid input'
@@ -36,6 +36,38 @@ console.log(result)
 return result;
 }
 
-let computer = getComputerChoice(computerChoice);
+function game() {
+    let computerCount = 0;
+    let humanCount = 0;
+    for (let i = 0; i < 5; i++) {
+        let computer = getComputerChoice(computerChoice);
+        let round = playRound(prompt("Make your selection").toLowerCase(),computer)
+        if(round == `Computer wins`) {
+            computerCount++
+        }
+        else if(round == `player wins`){
+            humanCount++
+        }
+        
 
-playRound(prompt("Make your selection").toLowerCase(),computer);
+        
+    }
+    if(humanCount > computerCount){
+        console.log(`You beat the computer with a score of ${humanCount} to ${computerCount}`)
+    }
+    else if(computerCount > humanCount){
+        console.log(`The computer wins with a score of ${computerCount} to ${humanCount}`)
+    }
+    else{
+        console.log('The game ends in a tie')
+    }
+}
+
+
+
+
+
+let initiateGame = game()
+
+// with ${computerSelection} against player's ${playerSelection}
+// with ${playerSelection} against computer's ${computerSelection}
